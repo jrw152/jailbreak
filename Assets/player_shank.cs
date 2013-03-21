@@ -29,14 +29,12 @@ public class player_shank : MonoBehaviour {
 			if(allowedToPlayAudio){
 				SendMessage ("PlayRadioSound");
 			}
-			else{
 				// set the clickedTarget's position to that of the mouse
 				clickedTarget.x = Input.mousePosition.x;
 				clickedTarget.y = Input.mousePosition.y;
 				clickedTarget.z = transform.position.z - Camera.mainCamera.transform.position.z;
 				// walking is now true 
 				walking = true;
-			}
 		}
 		if(walking){
 			mousePointer.disappear = false;
