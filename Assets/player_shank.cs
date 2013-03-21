@@ -22,17 +22,21 @@ public class player_shank : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		float step = speed * Time.deltaTime;
 		if (Input.GetMouseButtonUp(0)) {
 			mousePointer.mouseIsClicked = true;
+			
 			if(allowedToPlayAudio){
 				SendMessage ("PlayRadioSound");
 			}
+			else{
 				// set the clickedTarget's position to that of the mouse
 				clickedTarget.x = Input.mousePosition.x;
 				clickedTarget.y = Input.mousePosition.y;
 				clickedTarget.z = transform.position.z - Camera.mainCamera.transform.position.z;
 				// walking is now true 
 				walking = true;
+			}
 		}
 		if(walking){
 			mousePointer.disappear = false;
