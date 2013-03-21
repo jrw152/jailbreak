@@ -2,10 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\player_shank.cs">
     <Files>
-      <File FileName="Assets\player_shank.cs" Line="37" Column="20" />
-      <File FileName="..\..\..\Dropbox\Platformer Group (1)\Platformer\Assets\scripts\grapnel_bullet.cs" Line="30" Column="8" />
-      <File FileName="..\..\..\Dropbox\Platformer Group (1)\Platformer\Assets\scripts\bullet.cs" Line="24" Column="47" />
-      <File FileName="Assets\mousePointer.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\Dropbox\Pong Project\Group 10 Pong Project\Assets\Scripts\paddle_mover.cs" Line="115" Column="27" />
+      <File FileName="Assets\player_shank.cs" Line="6" Column="8" />
+      <File FileName="Assets\mousePointer.cs" Line="30" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

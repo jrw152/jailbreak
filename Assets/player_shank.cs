@@ -3,18 +3,19 @@ using System.Collections;
 
 public class player_shank : MonoBehaviour {
 	private Vector3 clickedTarget;
-	public static bool walking;
+	public bool walking;
+	public static bool controlled;
 	private bool allowedToPlayAudio;
 	private bool allowedToPlayWalkAudio = true;
-	private float speed = 4;
+	public float speed = 4;
 	public AudioClip[] radioGo = new AudioClip[9];
 	public AudioClip[] footsteps = new AudioClip[6];
-
-	
+	public string player = "a";
+	private bool keyIsDown = false;
 	
 	// Use this for initialization
 	void Start () {
-
+		controlled = true;
 		allowedToPlayAudio = true;
 		clickedTarget = transform.position;
     	walking = false;
@@ -22,10 +23,14 @@ public class player_shank : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float step = speed * Time.deltaTime;
-		if (Input.GetMouseButtonUp(0)) {
+		if(Input.GetKeyDown (player)){
+			keyIsDown = true;
+		}
+		if(Input.GetKeyUp (player)){
+			keyIsDown = false;
+		}
+		if ((Input.GetMouseButtonUp(0)) && (controlled) && (keyIsDown)) {
 			mousePointer.mouseIsClicked = true;
-			
 			if(allowedToPlayAudio){
 				SendMessage ("PlayRadioSound");
 			}
