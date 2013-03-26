@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GuardAI.cs" />
      <Compile Include="Assets\mousePointer.cs" />
      <Compile Include="Assets\player_shank.cs" />
   </ItemGroup>
