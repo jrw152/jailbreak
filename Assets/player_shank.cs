@@ -2,9 +2,14 @@ using UnityEngine;
 using System.Collections;
 
 public class player_shank : MonoBehaviour {
+	public string character;
+	public static bool shank = false;
+	public static bool rock = false;
+	public static bool big = false;
+	public static bool gitSelected = false;
 	private Vector3 clickedTarget;
 	public bool walking;
-	public static bool controlled;
+	public static bool controlled = false;
 	private bool allowedToPlayAudio;
 	private bool allowedToPlayWalkAudio = true;
 	public float speed = 4;
@@ -15,7 +20,6 @@ public class player_shank : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		controlled = true;
 		allowedToPlayAudio = true;
 		clickedTarget = transform.position;
     	walking = false;
@@ -23,13 +27,14 @@ public class player_shank : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		SendMessage ("GetPlayerControl");
 		if(Input.GetKeyDown (player)){
 			keyIsDown = true;
 		}
 		if(Input.GetKeyUp (player)){
 			keyIsDown = false;
 		}
-		if ((Input.GetMouseButtonUp(0)) && (controlled) && (keyIsDown)) {
+		if ((Input.GetMouseButtonUp(0)) && ((controlled) || (keyIsDown)) && (!gitSelected)) {
 			mousePointer.mouseIsClicked = true;
 			if(allowedToPlayAudio){
 				SendMessage ("PlayRadioSound");
@@ -61,6 +66,7 @@ public class player_shank : MonoBehaviour {
 				walking = false;
 			}
 		}
+		gitSelected = false;
 	}
 	void OnCollisionEnter(Collision collision){
 		if(walking){
@@ -82,5 +88,26 @@ public class player_shank : MonoBehaviour {
 		audio.PlayOneShot(footsteps[Random.Range(0, 6)]);
 		yield return new WaitForSeconds (0.35f);
 		allowedToPlayWalkAudio = true;
+	}
+	void GetPlayerControl(){
+		if((character.Equals ("shank")) && (shank)){
+			controlled = true;
+		}
+		else if((character.Equals ("shank")) && (!shank)){
+			controlled = false;
+		}
+		if((character.Equals ("rock")) && (rock)){
+			controlled = true;
+		}
+		else if((character.Equals ("rock")) && (!rock)){
+			controlled = false;
+		}
+		if((character.Equals ("big")) && (big)){
+			controlled = true;
+		}
+		else if(character.Equals ("big") && (!big)){
+			controlled = false;
+		}
+
 	}
 }
