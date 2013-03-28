@@ -25,9 +25,11 @@ public class GuardAI : MonoBehaviour {
                 distance = curDistance;
             }
         }
+		if (distance<10){
 		Transform playerTransform = closest.transform;
 		// get player position
 		Vector3 v1 = playerTransform.position;
          transform.position = Vector3.MoveTowards(transform.position, v1, speed*Time.deltaTime);
+		}
 	}
 }
