@@ -4,7 +4,8 @@ using System.Collections;
 public class GuardAI : MonoBehaviour {
 	GameObject[] gos;
 	GameObject closest;
-	int speed = 1;
+	public int speed = 2;
+	public int sightRange=200;
 	// Use this for initialization
 	void Start () {
 	
@@ -25,7 +26,7 @@ public class GuardAI : MonoBehaviour {
                 distance = curDistance;
             }
         }
-		if (distance<10){
+		if (distance<sightRange){
 		Transform playerTransform = closest.transform;
 		// get player position
 		Vector3 v1 = playerTransform.position;
