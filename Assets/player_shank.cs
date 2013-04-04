@@ -26,7 +26,8 @@ public class player_shank : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {	
+		SendMessage ("ResetPlayer");
 		SendMessage ("GetPlayerControl");
 		if(Input.GetKeyDown (player)){
 			keyIsDown = true;
@@ -68,6 +69,7 @@ public class player_shank : MonoBehaviour {
 		}
 		gitSelected = false;
 	}
+	
 	void OnCollisionEnter(Collision collision){
 		if(walking){
 			mousePointer.disappear = true;
@@ -89,6 +91,7 @@ public class player_shank : MonoBehaviour {
 		yield return new WaitForSeconds (0.35f);
 		allowedToPlayWalkAudio = true;
 	}
+	
 	void GetPlayerControl(){
 		if((character.Equals ("shank")) && (shank)){
 			controlled = true;
@@ -108,6 +111,10 @@ public class player_shank : MonoBehaviour {
 		else if(character.Equals ("big") && (!big)){
 			controlled = false;
 		}
-
+	}
+	
+	void ResetPlayer(){
+		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+		transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
 	}
 }
