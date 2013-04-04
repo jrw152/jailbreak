@@ -46,6 +46,10 @@ public class player_shank : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (transform.localPosition.x>125){
+		  
+    	Application.LoadLevel (0);  
+  		}  
 		if(activeGUI == 0){//Prevents unintended movement when using the GUI
 			SendMessage ("ResetPlayer");
 			SendMessage ("GetPlayerControl");
