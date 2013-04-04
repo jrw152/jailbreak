@@ -31,6 +31,10 @@ public class GuardAI : MonoBehaviour {
 		// get player position
 		Vector3 v1 = playerTransform.position;
          transform.position = Vector3.MoveTowards(transform.position, v1, speed*Time.deltaTime);
+			
+			
+		//Check if in same spot as any player
+		
 		}
 	}
 	
