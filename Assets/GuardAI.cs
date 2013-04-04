@@ -33,9 +33,10 @@ public class GuardAI : MonoBehaviour {
          transform.position = Vector3.MoveTowards(transform.position, v1, speed*Time.deltaTime);
 		}
 	}
+	
 	void OnTriggerEnter(Collider other) {
         if (other.tag==("player_shank")){
-		other.SendMessage("DeadPlayer");
+		other.SendMessage("Injured",gameObject.tag);
 		}
     }
 }

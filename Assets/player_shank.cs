@@ -18,17 +18,35 @@ public class player_shank : MonoBehaviour {
 	public string player = "a";
 	private bool keyIsDown = false;
 	public static int activeGUI = 0; //Used to prevent GUI selection automatically moving the player, Should only be set to 2 max.
+	public int HealthInitial = 100;
+	private int Health;
+	private int[] ReturnHelper = new int[2];
+	private int GuardDamage = 5;
 	
 	// Use this for initialization
 	void Start () {
 		allowedToPlayAudio = true;
 		clickedTarget = transform.position;
     	walking = false;
+		
+		//Initializes Health Counter
+		Health = HealthInitial;
+		if(player=="a"){
+			ReturnHelper[0]=1;
+		}
+		if(player=="s"){
+			ReturnHelper[0]=2;
+		}
+		if(player=="d"){
+			ReturnHelper[0]=3;
+		}
+		ReturnHelper[1]=Health;
+		GUIScript.Helper = ReturnHelper;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(activeGUI == 0){
+		if(activeGUI == 0){//Prevents unintended movement when using the GUI
 			SendMessage ("ResetPlayer");
 			SendMessage ("GetPlayerControl");
 			if(Input.GetKeyDown (player)){
@@ -76,13 +94,14 @@ public class player_shank : MonoBehaviour {
 		}		
 	}
 	
-	void OnCollisionEnter(Collision collision){
+	void OnTriggerEnter(Collider other){
 		if(walking){
 			mousePointer.disappear = true;
 			walking = false;
 			rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 		}
 	}
+	
 	IEnumerator PlayRadioSound(){
 		allowedToPlayAudio = false;
 		yield return new WaitForSeconds (0.2f);
@@ -123,8 +142,23 @@ public class player_shank : MonoBehaviour {
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 		transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
 	}
-	void DeadPlayer(){
-	transform.position=new Vector3(-92.69604f, -32.47769f, 0);
 	
+	void Injured(string x){
+		//Damage
+		if(x == ("Guard")){
+			Health = Health - GuardDamage;
+			ReturnHelper[1]=Health;
+			if(Health<=0){
+				DeadPlayer();
+			}
+			GUIScript.Helper = ReturnHelper;	
+		}
+	}
+	
+	
+	void DeadPlayer(){
+		transform.position=new Vector3(-92.69604f, -32.47769f, 0);
+		Health= HealthInitial/2;
+		HealthInitial= Health;
 	}
 }
