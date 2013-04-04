@@ -17,6 +17,7 @@ public class player_shank : MonoBehaviour {
 	public AudioClip[] footsteps = new AudioClip[6];
 	public string player = "a";
 	private bool keyIsDown = false;
+	public static int activeGUI = 0; //Used to prevent GUI selection automatically moving the player, Should only be set to 2 max.
 	
 	// Use this for initialization
 	void Start () {
@@ -26,48 +27,53 @@ public class player_shank : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {	
-		SendMessage ("ResetPlayer");
-		SendMessage ("GetPlayerControl");
-		if(Input.GetKeyDown (player)){
-			keyIsDown = true;
-		}
-		if(Input.GetKeyUp (player)){
-			keyIsDown = false;
-		}
-		if ((Input.GetMouseButtonUp(0)) && ((controlled) || (keyIsDown)) && (!gitSelected)) {
-			mousePointer.mouseIsClicked = true;
-			if(allowedToPlayAudio){
-				SendMessage ("PlayRadioSound");
+	void Update () {
+		if(activeGUI == 0){
+			SendMessage ("ResetPlayer");
+			SendMessage ("GetPlayerControl");
+			if(Input.GetKeyDown (player)){
+				keyIsDown = true;
 			}
-				// set the clickedTarget's position to that of the mouse
-				clickedTarget.x = Input.mousePosition.x;
-				clickedTarget.y = Input.mousePosition.y;
-				clickedTarget.z = transform.position.z - Camera.mainCamera.transform.position.z;
-				// walking is now true 
-				walking = true;
-		}
-		if(walking){
-			mousePointer.disappear = false;
-			rigidbody.constraints = RigidbodyConstraints.None;
-			// checks if the clickedTarget is far enough
-			// prevents the character from inefficiently moving a little bit
-			if((Vector2.Distance(Camera.mainCamera.ScreenToWorldPoint(clickedTarget),transform.position))>0.5){
-				Vector3 worldPos = Camera.mainCamera.ScreenToWorldPoint(clickedTarget);
-				transform.LookAt (worldPos);
-				transform.Translate(Vector3.forward * Time.deltaTime*speed);
-				
-				if(allowedToPlayWalkAudio){
-					SendMessage ("PlayWalkSound");
+			if(Input.GetKeyUp (player)){
+				keyIsDown = false;
+			}
+			if ((Input.GetMouseButtonUp(0)) && ((controlled) || (keyIsDown)) && (!gitSelected)) {
+				mousePointer.mouseIsClicked = true;
+				if(allowedToPlayAudio){
+					SendMessage ("PlayRadioSound");
+				}
+					// set the clickedTarget's position to that of the mouse
+					clickedTarget.x = Input.mousePosition.x;
+					clickedTarget.y = Input.mousePosition.y;
+					clickedTarget.z = transform.position.z - Camera.mainCamera.transform.position.z;
+					// walking is now true 
+					walking = true;
+			}
+			if(walking){
+				mousePointer.disappear = false;
+				rigidbody.constraints = RigidbodyConstraints.None;
+				// checks if the clickedTarget is far enough
+				// prevents the character from inefficiently moving a little bit
+				if((Vector2.Distance(Camera.mainCamera.ScreenToWorldPoint(clickedTarget),transform.position))>0.5){
+					Vector3 worldPos = Camera.mainCamera.ScreenToWorldPoint(clickedTarget);
+					transform.LookAt (worldPos);
+					transform.Translate(Vector3.forward * Time.deltaTime*speed);
+					
+					if(allowedToPlayWalkAudio){
+						SendMessage ("PlayWalkSound");
+					}
+				}
+				else{
+					rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+					mousePointer.disappear = true;
+					walking = false;
 				}
 			}
-			else{
-				rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-				mousePointer.disappear = true;
-				walking = false;
-			}
+			gitSelected = false;
 		}
-		gitSelected = false;
+		else{
+			activeGUI -= 1;
+		}		
 	}
 	
 	void OnCollisionEnter(Collision collision){

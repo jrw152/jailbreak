@@ -13,6 +13,7 @@ public class GUIScript : MonoBehaviour {
 			player_shank.shank = true;
 			player_shank.rock = false;
 			player_shank.big = false;
+			player_shank.activeGUI = 2;
 		}
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 		if(GUI.Button(new Rect(20, 100,100,30), "Chuck Rockly")) {
@@ -20,6 +21,7 @@ public class GUIScript : MonoBehaviour {
 			player_shank.shank = false;
 			player_shank.rock = true;
 			player_shank.big = false;
+			player_shank.activeGUI = 2;
 		}
 		// Make the second button.
 		if(GUI.Button(new Rect(20,70,100,30), "Rub-a-Dub Tub")) {
@@ -27,6 +29,7 @@ public class GUIScript : MonoBehaviour {
 			player_shank.shank = false;
 			player_shank.rock = false;
 			player_shank.big = true;
+			player_shank.activeGUI = 2;
 		}
 	}
 }
