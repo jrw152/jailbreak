@@ -1,12 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/player_shank.cs">
-    <Files>
-      <File FileName="Assets/player_shank.cs" Line="24" Column="29" />
-      <File FileName="Assets/GUIScript.cs" Line="24" Column="37" />
-      <File FileName="Assets/GuardAI.cs" Line="8" Column="28" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
