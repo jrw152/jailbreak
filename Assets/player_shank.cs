@@ -211,6 +211,10 @@ public class player_shank : MonoBehaviour {
 		if(player=="d"){
 			GUIScript.Helper[2]=Health;
 		}	
+		
+		if(Health<=0){
+			DeadPlayer();
+		}
 	}
 	
 	// Other group member's code
