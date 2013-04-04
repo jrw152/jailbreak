@@ -28,6 +28,8 @@ public class player_shank : MonoBehaviour {
 	// these contain an array of sounds in which a random sound is chosen each time to be palyed
 	public AudioClip[] radioGo = new AudioClip[9];
 	public AudioClip[] footsteps = new AudioClip[6];
+	//Key for this player -> if changed must also change in string[] Buttons
+	public string player = "a";
 	
 	// other member's code
 	private bool keyIsDown = false;
