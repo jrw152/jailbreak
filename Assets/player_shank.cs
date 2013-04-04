@@ -31,11 +31,12 @@ public class player_shank : MonoBehaviour {
 	
 	// other member's code
 	private bool keyIsDown = false;
+	
 	public static int activeGUI = 0; //Used to prevent GUI selection automatically moving the player, Should only be set to 2 max.
-	public int HealthInitial = 100;
-	private int Health;
-	private int[] ReturnHelper = new int[2];
-	private int GuardDamage = 1;
+	public int HealthInitial = 100; //Beginning Health
+	private int Health; //Keeps track of health
+	private int GuardDamage = 1; 
+	private string[] Buttons = new string[3] {"a","s","d"};
 	
 	// Use this for initialization
 	void Start () {
@@ -46,18 +47,17 @@ public class player_shank : MonoBehaviour {
     	walking = false;
 		// Other member's code
 		//Initializes Health Counter
+		GUIScript.keyboard_select = Buttons;
 		Health = HealthInitial;
-		if(player=="a"){
-			ReturnHelper[0]=1;
+		if(player==Buttons[0]){
+			GUIScript.Helper[0]=HealthInitial;
 		}
-		if(player=="s"){
-			ReturnHelper[0]=2;
+		if(player==Buttons[1]){
+			GUIScript.Helper[1]=HealthInitial;
 		}
-		if(player=="d"){
-			ReturnHelper[0]=3;
+		if(player==Buttons[2]){
+			GUIScript.Helper[2]=HealthInitial;
 		}
-		ReturnHelper[1]=Health;
-		GUIScript.Helper = ReturnHelper;
 	}
 	
 	// Update is called once per frame
@@ -198,12 +198,17 @@ public class player_shank : MonoBehaviour {
 		//Damage
 		if(x == ("Guard")){
 			Health = Health - GuardDamage;
-			ReturnHelper[1]=Health;
-			if(Health<=0){
-				DeadPlayer();
-			}
-			GUIScript.Helper = ReturnHelper;	
 		}
+		
+		if(player=="a"){
+			GUIScript.Helper[0]=Health;
+		}
+		if(player=="s"){
+			GUIScript.Helper[1]=Health;
+		}
+		if(player=="d"){
+			GUIScript.Helper[2]=Health;
+		}	
 	}
 	
 	// Other group member's code
