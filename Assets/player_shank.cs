@@ -39,6 +39,7 @@ public class player_shank : MonoBehaviour {
 	private int Health; //Keeps track of health
 	private int GuardDamage = 1; 
 	private string[] Buttons = new string[3] {"a","s","d"};
+	public int attempts = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -51,15 +52,7 @@ public class player_shank : MonoBehaviour {
 		//Initializes Health Counter
 		GUIScript.keyboard_select = Buttons;
 		Health = HealthInitial;
-		if(player==Buttons[0]){
-			GUIScript.Helper[0]=HealthInitial;
-		}
-		if(player==Buttons[1]){
-			GUIScript.Helper[1]=HealthInitial;
-		}
-		if(player==Buttons[2]){
-			GUIScript.Helper[2]=HealthInitial;
-		}
+		UpdateHealth();
 	}
 	
 	// Update is called once per frame
@@ -195,6 +188,31 @@ public class player_shank : MonoBehaviour {
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 		transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
 	}
+	
+	private void UpdateHealth(){
+		if(player==Buttons[0]){
+			GUIScript.Helper[0]=Health;
+		}
+		if(player==Buttons[1]){
+			GUIScript.Helper[1]=Health;
+		}
+		if(player==Buttons[2]){
+			GUIScript.Helper[2]=Health;
+		}
+	}
+	
+	private void UpdateAttempts(){
+		if(player==Buttons[0]){
+			GUIScript.Attempts[0]=attempts;
+		}
+		if(player==Buttons[1]){
+			GUIScript.Attempts[1]=attempts;
+		}
+		if(player==Buttons[2]){
+			GUIScript.Attempts[2]=attempts;
+		}
+	}
+	
 	// Other group member's code
 	void Injured(string x){
 		//Damage
@@ -202,15 +220,7 @@ public class player_shank : MonoBehaviour {
 			Health = Health - GuardDamage;
 		}
 		
-		if(player=="a"){
-			GUIScript.Helper[0]=Health;
-		}
-		if(player=="s"){
-			GUIScript.Helper[1]=Health;
-		}
-		if(player=="d"){
-			GUIScript.Helper[2]=Health;
-		}	
+		UpdateHealth();
 		
 		if(Health<=0){
 			DeadPlayer();
@@ -220,7 +230,10 @@ public class player_shank : MonoBehaviour {
 	// Other group member's code
 	void DeadPlayer(){
 		transform.position=new Vector3(-92.69604f, -32.47769f, 0);
-		Health= HealthInitial/2;
+		Health= Mathf.Max((HealthInitial/2),25);
+		UpdateHealth();
 		HealthInitial= Health;
+		attempts += 1;
+		UpdateAttempts();
 	}
 }
