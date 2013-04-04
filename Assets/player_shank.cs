@@ -117,4 +117,8 @@ public class player_shank : MonoBehaviour {
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 		transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
 	}
+	void DeadPlayer(){
+	transform.position=new Vector3(-92.69604f, -32.47769f, 0);
+	
+	}
 }
