@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 93e629783229e7f42906621b02ce5a5b
+guid: 413f7ced080167d4ea3337ff0416877f
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -67,43 +67,41 @@ ModelImporter:
     100122: pasted__pCube1
     100124: pasted__pCube1 1
     100126: pasted__pCube1 2
-    100128: pasted__pCube2
-    100130: pasted__polySurface1
-    100132: pasted__polySurface1 1
-    100134: pasted__polySurface3
-    100136: pasted__polySurface4
-    100138: pasted__polySurface4 1
-    100140: pasted__polySurface5
-    100142: pasted__pSphere1
-    100144: pasted__pSphere1 1
-    100146: pasted__transform1
-    100148: pasted__transform1 1
-    100150: pasted__transform2
-    100152: pasted__transform2 1
-    100154: pasted__transform3
-    100156: pasted__transform3 1
-    100158: pasted__transform4
-    100160: pasted__transform4 1
-    100162: pasted__transform5
-    100164: pasted__transform6
-    100166: pasted__transform7
-    100168: pasted__transform8
-    100170: pCube1
-    100172: pCube2
-    100174: polySurface1
-    100176: polySurface3
-    100178: polySurface4
-    100180: polySurface5
-    100182: polySurface7
-    100184: pSphere1
-    100186: transform1
-    100188: transform2
-    100190: transform3
-    100192: transform4
-    100194: transform5
-    100196: transform6
-    100198: transform7
-    100200: transform8
+    100128: pasted__polySurface1
+    100130: pasted__polySurface1 1
+    100132: pasted__polySurface3
+    100134: pasted__polySurface4
+    100136: pasted__polySurface4 1
+    100138: pasted__polySurface5
+    100140: pasted__pSphere1
+    100142: pasted__pSphere1 1
+    100144: pasted__transform1
+    100146: pasted__transform1 1
+    100148: pasted__transform2
+    100150: pasted__transform2 1
+    100152: pasted__transform3
+    100154: pasted__transform3 1
+    100156: pasted__transform4
+    100158: pasted__transform4 1
+    100160: pasted__transform5
+    100162: pasted__transform6
+    100164: pasted__transform7
+    100166: pasted__transform8
+    100168: pCube1
+    100170: polySurface1
+    100172: polySurface3
+    100174: polySurface4
+    100176: polySurface5
+    100178: pSphere1
+    100180: pSphere2
+    100182: transform1
+    100184: transform2
+    100186: transform3
+    100188: transform4
+    100190: transform5
+    100192: transform6
+    100194: transform7
+    100196: transform8
     400000: group
     400002: group1
     400004: group2
@@ -168,51 +166,45 @@ ModelImporter:
     400122: pasted__pCube1
     400124: pasted__pCube1 1
     400126: pasted__pCube1 2
-    400128: pasted__pCube2
-    400130: pasted__polySurface1
-    400132: pasted__polySurface1 1
-    400134: pasted__polySurface3
-    400136: pasted__polySurface4
-    400138: pasted__polySurface4 1
-    400140: pasted__polySurface5
-    400142: pasted__pSphere1
-    400144: pasted__pSphere1 1
-    400146: pasted__transform1
-    400148: pasted__transform1 1
-    400150: pasted__transform2
-    400152: pasted__transform2 1
-    400154: pasted__transform3
-    400156: pasted__transform3 1
-    400158: pasted__transform4
-    400160: pasted__transform4 1
-    400162: pasted__transform5
-    400164: pasted__transform6
-    400166: pasted__transform7
-    400168: pasted__transform8
-    400170: pCube1
-    400172: pCube2
-    400174: polySurface1
-    400176: polySurface3
-    400178: polySurface4
-    400180: polySurface5
-    400182: polySurface7
-    400184: pSphere1
-    400186: transform1
-    400188: transform2
-    400190: transform3
-    400192: transform4
-    400194: transform5
-    400196: transform6
-    400198: transform7
-    400200: transform8
-    2300000: pasted__pCube2
-    2300002: pCube2
-    3300000: pasted__pCube2
-    3300002: pCube2
-    4300000: pCube2
-    4300002: pasted__pCube2
+    400128: pasted__polySurface1
+    400130: pasted__polySurface1 1
+    400132: pasted__polySurface3
+    400134: pasted__polySurface4
+    400136: pasted__polySurface4 1
+    400138: pasted__polySurface5
+    400140: pasted__pSphere1
+    400142: pasted__pSphere1 1
+    400144: pasted__transform1
+    400146: pasted__transform1 1
+    400148: pasted__transform2
+    400150: pasted__transform2 1
+    400152: pasted__transform3
+    400154: pasted__transform3 1
+    400156: pasted__transform4
+    400158: pasted__transform4 1
+    400160: pasted__transform5
+    400162: pasted__transform6
+    400164: pasted__transform7
+    400166: pasted__transform8
+    400168: pCube1
+    400170: polySurface1
+    400172: polySurface3
+    400174: polySurface4
+    400176: polySurface5
+    400178: pSphere1
+    400180: pSphere2
+    400182: transform1
+    400184: transform2
+    400186: transform3
+    400188: transform4
+    400190: transform5
+    400192: transform6
+    400194: transform7
+    400196: transform8
+    4300000: pSphere2
     7400000: Take 001
     9500000: //RootNode
+    13700000: pSphere2
   materials:
     importMaterials: 1
     materialName: 0
