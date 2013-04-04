@@ -1,21 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\player_shank.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GuardAI.cs">
     <Files>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <File FileName="Assets\GuardAI.cs" Line="34" Column="4" />
-      <File FileName="Assets\player_shank.cs" Line="18" Column="22" />
-=======
-      <File FileName="Assets\player_shank.cs" Line="19" Column="33" />
-      <File FileName="Assets\GuardAI.cs" Line="6" Column="16" />
->>>>>>> 72119a9d884b058de1136328881965661942f3ad
-=======
-      <File FileName="Assets\player_shank.cs" Line="19" Column="33" />
-      <File FileName="Assets\GuardAI.cs" Line="6" Column="16" />
->>>>>>> 72119a9d884b058de1136328881965661942f3ad
-      <File FileName="Assets\mousePointer.cs" Line="1" Column="1" />
-      <File FileName="Assets\GUIScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\GuardAI.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
