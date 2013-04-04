@@ -21,7 +21,7 @@ public class player_shank : MonoBehaviour {
 	public int HealthInitial = 100;
 	private int Health;
 	private int[] ReturnHelper = new int[2];
-	private int GuardDamage = 5;
+	private int GuardDamage = 1;
 	
 	// Use this for initialization
 	void Start () {

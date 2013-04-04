@@ -30,12 +30,17 @@ public class GuardAI : MonoBehaviour {
 		Transform playerTransform = closest.transform;
 		// get player position
 		Vector3 v1 = playerTransform.position;
-         transform.position = Vector3.MoveTowards(transform.position, v1, speed*Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, v1, speed*Time.deltaTime);
+		Vector3 v2 = transform.position;
 			
 			
-		//Check if in same spot as any player
-		
-		}
+			//Check if in same spot as any player
+			
+			if(v1==v2){
+				
+				closest.SendMessage("Injured",gameObject.tag);
+			}
+	}
 	}
 	
 	void OnTriggerEnter(Collider other) {
