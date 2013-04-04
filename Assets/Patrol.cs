@@ -34,7 +34,12 @@ public class Patrol : MonoBehaviour {
 		Transform playerTransform = closest.transform;
 		// get player position
 		Vector3 v1 = playerTransform.position;
-         transform.position = Vector3.MoveTowards(transform.position, v1, speed*Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, v1, speed*Time.deltaTime);
+		Vector3 v2 = transform.position;
+			if(v1==v2){
+				
+				closest.SendMessage("Injured",gameObject.tag);
+			}
 		}
 		else{
 		if (up==true && transform.localPosition.x>=92 && transform.localPosition.x<=93){
@@ -62,11 +67,6 @@ public class Patrol : MonoBehaviour {
 	}
 	
 	
-	void OnTriggerEnter(Collider other) {
-        if (other.tag==("player_shank")){
-		other.SendMessage("DeadPlayer");
-		}
-    }
 	
 	void MoveUp() {
 		Vector3 speed = new Vector3(0, 4f, 0);
@@ -84,7 +84,13 @@ public class Patrol : MonoBehaviour {
 	}
 	
 	void MoveLeft() {
-		Vector3 temp = new Vector3(-1f,0,0);
+		Vector3 temp = new Vector3(-4f,0,0);
 		this.transform.position += temp;
 	}
+	
+	void OnTriggerEnter(Collider other) {
+        if (other.tag==("player_shank")){
+		other.SendMessage("Injured",gameObject.tag);
+		}
+    }
 }
