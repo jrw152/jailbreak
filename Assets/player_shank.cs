@@ -94,12 +94,10 @@ public class player_shank : MonoBehaviour {
 		}		
 	}
 	
-	void OnTriggerEnter(Collider other){
-		if(walking){
+	void OnCollisionEnter(Collision other){
 			mousePointer.disappear = true;
 			walking = false;
 			rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-		}
 	}
 	
 	IEnumerator PlayRadioSound(){
@@ -111,9 +109,26 @@ public class player_shank : MonoBehaviour {
 		allowedToPlayAudio = true;
 	}
 	IEnumerator PlayWalkSound(){
+		// the footstep sound is being played, so this is set to false
+		// prevents multiple footsteps from being played from the same person
 		allowedToPlayWalkAudio = false;
+		// play a random footstep sound from the array of footsteps
 		audio.PlayOneShot(footsteps[Random.Range(0, 6)]);
-		yield return new WaitForSeconds (0.35f);
+		// the amount of seconds between each footstep sound
+		float footstepDelay = 0.35f;
+		// based on the character type, the footstep delay can be faster or slower
+		if(character.Equals ("shank")){
+			footstepDelay = 0.35f;
+		}
+		else if(character.Equals ("rock")){
+			footstepDelay = 0.5f;
+		}
+		else if(character.Equals ("big")){
+			footstepDelay = 0.75f;
+		}
+		// wait for footstepDelay seconds
+		yield return new WaitForSeconds (footstepDelay);
+		// then set this to true, so another footstep sound can be played in necessary
 		allowedToPlayWalkAudio = true;
 	}
 	
