@@ -36,13 +36,15 @@ public class GuardAI : MonoBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, v1, speed*Time.deltaTime);
 		Vector3 v2 = transform.position;
 			
-			//Check if in same spot as any player
-			if(v1==v2){
+			//dry9
+			if(v1==v2){//Check if in same spot as any player
 				closest.SendMessage("Injured",gameObject.tag);
 			}
 		}
 	}
 	
+	//dry9
+	//If object collides, but is not in the exact same location for a given update, still recieves damage
 	void OnTriggerEnter(Collider other) {
         if (other.tag==("player_shank")){
 		other.SendMessage("Injured",gameObject.tag);

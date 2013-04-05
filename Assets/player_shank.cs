@@ -31,15 +31,18 @@ public class player_shank : MonoBehaviour {
 	//Key for this player -> if changed must also change in string[] Buttons
 	public string player = "a";
 	
-	// other member's code
+	//jrw125: 
 	private bool keyIsDown = false;
 	
+	//dry9
 	public static int activeGUI = 0; //Used to prevent GUI selection automatically moving the player, Should only be set to 2 max.
-	public int HealthInitial = 100; //Beginning Health
+	public int HealthInitial = 100; //Beginning Health - Can Change in Unity
 	private int Health; //Keeps track of health
-	private int GuardDamage = 1; 
-	private string[] Buttons = new string[3] {"a","s","d"};
-	public int attempts = 0;
+	public int GuardDamage = 1; //How much damage do collisions and being in the same spot deal
+	private string[] Buttons = new string[3] {"a","s","d"}; //The keyboard strings for the three prisoners; used to denote different players toward there GUI output
+	public int attempts = 0; //Number of deaths for prisoner
+	private float x_bound = 125f; //Max X dimension size of prison
+	private float y_bound = 50f; //Max Y dimension size of prison
 	
 	// Use this for initialization
 	void Start () {
@@ -48,18 +51,22 @@ public class player_shank : MonoBehaviour {
 		allowedToPlayAudio = true;
 		clickedTarget = transform.position;
     	walking = false;
-		// Other member's code
-		//Initializes Health Counter
-		GUIScript.keyboard_select = Buttons;
-		Health = HealthInitial;
-		UpdateHealth();
+		
+		//dry9
+		//Initializes Health Counter and Sends to be parsed for GUI display
+		GUIScript.keyboard_select = Buttons; //Makes sure both GUI & Players have the same keyboard code
+		Health = HealthInitial; //Health is set to public initial
+		UpdateHealth(); //Parsed to update GUI
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		// other group member's code
+		
+		//dry9
 		if(activeGUI == 0){ //Prevents unintended movement when using the GUI
-			SendMessage ("ResetPlayer");
+			SendMessage ("ResetPlayer"); //Resets awkward physics responses
+			
+			//jrw125
 			SendMessage ("GetPlayerControl");
 			if(Input.GetKeyDown (player)){
 				keyIsDown = true;
@@ -67,6 +74,7 @@ public class player_shank : MonoBehaviour {
 			if(Input.GetKeyUp (player)){
 				keyIsDown = false;
 			}
+			
 			// ABL38 - this is the start of my code
 			if ((Input.GetMouseButtonUp(0)) && ((controlled) || (keyIsDown)) && (!gitSelected)) {
 				// on the mouse button up, if the GUI button is clicked or its respective key is pressed, and the mouse is currently not on the GUI,
@@ -109,10 +117,9 @@ public class player_shank : MonoBehaviour {
 			gitSelected = false;
 		}
 		else{
-			activeGUI -= 1;
+			activeGUI -= 1;//Allows update cycles between clicking the GUI and being able to move
 		}
-		Check_Location();
-		print (GUIScript.free_prisoners[0] + " " + GUIScript.free_prisoners[1] + " " + GUIScript.free_prisoners[2]);
+		Check_Location();//Checks if prisoner has "escaped"
 	}
 	// ABL38
 	void OnCollisionEnter(Collision other){
@@ -185,12 +192,16 @@ public class player_shank : MonoBehaviour {
 			controlled = false;
 		}
 	}
-	// Other group member's code
+	
+	//dry9
+	//Prevents awkard physics responses from compiling into larger ones
 	void ResetPlayer(){
-		transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-		transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+		transform.position = new Vector3(transform.position.x, transform.position.y, 0); //resets position
+		transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);  //resets rotation
 	}
 	
+	//dry9
+	//Updates the correct Health variable in the GUI depending on player
 	private void UpdateHealth(){
 		if(player==Buttons[0]){
 			GUIScript.Helper[0]=Health;
@@ -203,6 +214,8 @@ public class player_shank : MonoBehaviour {
 		}
 	}
 	
+	//dry9
+	//Updates the correct Deaths variable in the GUI depending on player
 	private void UpdateAttempts(){
 		if(player==Buttons[0]){
 			GUIScript.Attempts[0]=attempts;
@@ -215,21 +228,21 @@ public class player_shank : MonoBehaviour {
 		}
 	}
 	
-	// Other group member's code
+	//dry9
+	//player accepts damage if attacked by a "Guard"
 	void Injured(string x){
-		//Damage
-		if(x == ("Guard")){
-			Health = Health - GuardDamage;
+		if(x == ("Guard")){//Tests whether tag is Guard
+			Health = Health - GuardDamage;//Decreases damage
 		}
 		
-		UpdateHealth();
+		UpdateHealth();//Sends to be parsed for GUI update
 		
-		if(Health<=0){
-			DeadPlayer();
+		if(Health<=0){//if player is "dead"
+			DeadPlayer();//player "dies"
 		}
 	}
 	
-	// Other group member's code
+	//jrw125
 	void DeadPlayer(){
 		transform.position=new Vector3(-92.69604f, -32.47769f, 0);
 		Health= Mathf.Max((HealthInitial/2),25);
@@ -239,8 +252,10 @@ public class player_shank : MonoBehaviour {
 		UpdateAttempts();
 	}
 	
+	//dry9
+	//Checks if player has escaped the prison and parses accordingly to be updated by GUI
 	void Check_Location(){
-		if(Mathf.Abs(transform.position.x) > 125 || Mathf.Abs(transform.position.y) > 50)
+		if(Mathf.Abs(transform.position.x) > x_bound || Mathf.Abs(transform.position.y) > y_bound)//Checks if outside rectangular prison bounds
 		{
 			if(player==Buttons[0]){
 				GUIScript.free_prisoners[0]=true;
