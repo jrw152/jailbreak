@@ -110,7 +110,9 @@ public class player_shank : MonoBehaviour {
 		}
 		else{
 			activeGUI -= 1;
-		}		
+		}
+		Check_Location();
+		print (GUIScript.free_prisoners[0] + " " + GUIScript.free_prisoners[1] + " " + GUIScript.free_prisoners[2]);
 	}
 	// ABL38
 	void OnCollisionEnter(Collision other){
@@ -235,5 +237,20 @@ public class player_shank : MonoBehaviour {
 		HealthInitial= Health;
 		attempts += 1;
 		UpdateAttempts();
+	}
+	
+	void Check_Location(){
+		if(Mathf.Abs(transform.position.x) > 125 || Mathf.Abs(transform.position.y) > 50)
+		{
+			if(player==Buttons[0]){
+				GUIScript.free_prisoners[0]=true;
+			}
+			if(player==Buttons[1]){
+				GUIScript.free_prisoners[1]=true;
+			}
+			if(player==Buttons[2]){
+				GUIScript.free_prisoners[2]=true;
+			}
+		}
 	}
 }

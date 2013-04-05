@@ -7,6 +7,7 @@ public class GuardAI : MonoBehaviour {
 	GameObject closest;
 	public int speed = 2;
 	public int sightRange=200;
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -31,17 +32,15 @@ public class GuardAI : MonoBehaviour {
 		Transform playerTransform = closest.transform;
 		// get player position
 		Vector3 v1 = playerTransform.position;
+		
         transform.position = Vector3.MoveTowards(transform.position, v1, speed*Time.deltaTime);
 		Vector3 v2 = transform.position;
 			
-			
 			//Check if in same spot as any player
-			
 			if(v1==v2){
-				
 				closest.SendMessage("Injured",gameObject.tag);
 			}
-	}
+		}
 	}
 	
 	void OnTriggerEnter(Collider other) {
